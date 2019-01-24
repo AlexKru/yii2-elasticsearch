@@ -187,6 +187,11 @@ class Query extends Component implements QueryInterface
      */
     public $explain;
 
+    /**
+     * @var array
+     */
+    public $index_boost;
+
 
     /**
      * @inheritdoc
@@ -601,7 +606,7 @@ class Query extends Component implements QueryInterface
 	 * > The stored_fields parameter is about fields that are explicitly marked
 	 * > as stored in the mapping, which is off by default and generally not recommended.
 	 * > Use source filtering instead to select subsets of the original source document to be returned.
-	 * 
+	 *
      * @param array $fields the fields to be selected.
      * @return $this the query object itself
 	 * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-stored-fields.html
@@ -736,6 +741,12 @@ class Query extends Component implements QueryInterface
         } else {
             $this->where = ['or', $this->where, $condition];
         }
+        return $this;
+    }
+
+    public function setIndexBoost($options)
+    {
+        $this->index_boost = $options;
         return $this;
     }
 
