@@ -178,6 +178,11 @@ class Query extends Component implements QueryInterface
      */
     public $explain;
 
+    /**
+     * @var array
+     */
+    public $indices_boost;
+
 
     /**
      * @inheritdoc
@@ -679,6 +684,12 @@ class Query extends Component implements QueryInterface
         }
 
         $this->options = array_merge($this->options, $options);
+        return $this;
+    }
+
+    public function setIndexBoost($options)
+    {
+        $this->indices_boost = $options;
         return $this;
     }
 
